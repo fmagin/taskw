@@ -12,6 +12,9 @@ fall back to the older TaskWarriorDirect implementation.
 import abc
 import codecs
 import copy
+from typing import Tuple, List
+from taskw import ID
+
 from distutils.version import LooseVersion
 import logging
 import os
@@ -216,7 +219,7 @@ class TaskWarriorDirect(TaskWarriorBase):
             for db in Command.files(command)
         )
 
-    def get_task(self, **kw):
+    def get_task(self, **kw) -> Tuple[ID, Task]:
         line, task = self._load_task(**kw)
 
         id = None
@@ -264,7 +267,7 @@ class TaskWarriorDirect(TaskWarriorBase):
 
         return line, task
 
-    def task_add(self, description, tags=None, **kw):
+    def task_add(self, description, tags: List[str] =None, **kw) -> Task:
         """ Add a new task.
 
         Takes any of the keywords allowed by taskwarrior like proj or prior.

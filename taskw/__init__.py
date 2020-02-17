@@ -1,3 +1,7 @@
+from typing import NewType
+
+ID = NewType('ID', int)
+
 from taskw.warrior import (
     TaskWarrior,
     TaskWarriorDirect,
